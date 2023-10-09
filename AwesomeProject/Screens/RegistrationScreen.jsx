@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import {
   ImageBackground,
   View,
@@ -9,7 +9,6 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Pressable,
-  ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
   TouchableOpacity,
@@ -27,7 +26,7 @@ const RegistrationScreen = () => {
   const [loginFocus, setLoginFocus] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -103,9 +102,9 @@ const RegistrationScreen = () => {
               <TouchableOpacity>
                 <Text
                   style={styles.textUnderButton}
-                  onPress={() => navigation.navigate("Login")}
+                  // onPress={() => navigation.navigate("LoginScreen")}
                 >
-                  Вже є акаунт? Увійти
+                  Вже є акаунт? <Text style={styles.textLogin}>Увійти</Text>
                 </Text>
               </TouchableOpacity>
             </View>
@@ -200,6 +199,9 @@ const styles = StyleSheet.create({
     borderColor: "#FF6C00",
     color: "#212121",
     backgroundColor: "#ffffff",
+  },
+  textLogin: {
+    textDecorationLine: "underline",
   },
 });
 

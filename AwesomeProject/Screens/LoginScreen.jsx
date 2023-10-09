@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import {
   ImageBackground,
   View,
@@ -22,12 +22,10 @@ import { StatusBar } from "expo-status-bar";
 const LoginScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
-  const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
-  const [loginFocus, setLoginFocus] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
-  const navigation = useNavigation();
+  //   const navigation = useNavigation();
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -45,17 +43,8 @@ const LoginScreen = () => {
           scrollEnabled={true}
         >
           <View style={styles.container}>
-            <View style={styles.photoContainer}>
-              <MaterialCommunityIcons
-                name={"plus-circle-outline"}
-                style={styles.buttonX}
-                size={25}
-                color="#FF6C00"
-              />
-            </View>
-
-            <View style={styles.registerContainer}>
-              <Text style={styles.register}>Реєстрація</Text>
+            <View style={styles.loginContainer}>
+              <Text style={styles.login}>Увійти</Text>
               <TextInput
                 style={!emailFocus ? styles.input : styles.inputFocus}
                 placeholder="Адреса електронної пошти"
@@ -64,15 +53,6 @@ const LoginScreen = () => {
                 onChangeText={setEmail}
                 onFocus={() => setEmailFocus(true)}
                 onBlur={() => setEmailFocus(false)}
-              />
-              <TextInput
-                style={!loginFocus ? styles.input : styles.inputFocus}
-                placeholder="Логін"
-                type="text"
-                value={login}
-                onChangeText={setLogin}
-                onFocus={() => setLoginFocus(true)}
-                onBlur={() => setLoginFocus(false)}
               />
               <View style={styles.passContainer}>
                 <TextInput
@@ -97,15 +77,16 @@ const LoginScreen = () => {
                 </TouchableOpacity>
               </View>
 
-              <TouchableOpacity style={styles.buttonRegister}>
-                <Text style={{ color: "#ffffff" }}>Зареєструватися</Text>
+              <TouchableOpacity style={styles.buttonLogin}>
+                <Text style={{ color: "#ffffff" }}>Увійти</Text>
               </TouchableOpacity>
               <TouchableOpacity>
                 <Text
                   style={styles.textUnderButton}
-                  onPress={() => navigation.navigate("Registration")}
+                  //   onPress={() => navigation.navigate("Registration")}
                 >
-                  Вже є акаунт? Увійти
+                  Немає акаунту?
+                  <Text style={styles.textRegister}>Зареєструватися</Text>
                 </Text>
               </TouchableOpacity>
             </View>
@@ -119,7 +100,7 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 549,
+    height: 489,
     backgroundColor: "#ffffff",
     marginTop: "auto",
     borderTopLeftRadius: 25,
@@ -130,24 +111,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  photoContainer: {
-    width: 120,
-    height: 120,
-    backgroundColor: "#F6F6F6",
-    position: "absolute",
-    top: -60,
-    left: "33.34%",
-    borderRadius: 16,
-  },
-  buttonX: {
-    left: 105,
-    top: 80,
-  },
-  registerContainer: {
+  loginContainer: {
     width: 343,
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: 92,
+    marginTop: 32,
   },
   passContainer: {
     display: "flex",
@@ -157,13 +125,13 @@ const styles = StyleSheet.create({
     left: -35,
     top: 12,
   },
-  register: {
+  login: {
     fontSize: 30,
     marginBottom: 32,
     fontFamily: "Roboto-Medium",
     textAlign: "center",
   },
-  buttonRegister: {
+  buttonLogin: {
     width: 343,
     height: 50,
     marginLeft: "auto",
@@ -200,6 +168,9 @@ const styles = StyleSheet.create({
     borderColor: "#FF6C00",
     color: "#212121",
     backgroundColor: "#ffffff",
+  },
+  textRegister: {
+    textDecorationLine: "underline",
   },
 });
 
