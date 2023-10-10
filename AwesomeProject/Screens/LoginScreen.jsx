@@ -67,7 +67,7 @@ const LoginScreen = () => {
                   onPress={() => setShowPassword(!showPassword)}
                 >
                   <MaterialCommunityIcons
-                    name={!showPassword ? "eye-off" : "eye"}
+                    name={showPassword ? "eye-off" : "eye"}
                     size={24}
                     color="#aaa"
                     style={styles.icon}

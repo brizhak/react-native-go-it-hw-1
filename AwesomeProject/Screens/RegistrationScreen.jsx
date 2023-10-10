@@ -92,11 +92,12 @@ const RegistrationScreen = () => {
                     onFocus={() => setPasswordFocus(true)}
                     onBlur={() => setPasswordFocus(false)}
                   />
+
                   <TouchableOpacity
                     onPress={() => setShowPassword(!showPassword)}
                   >
                     <MaterialCommunityIcons
-                      name={!showPassword ? "eye-off" : "eye"}
+                      name={showPassword ? "eye-off" : "eye"}
                       size={24}
                       color="#aaa"
                       style={styles.icon}
