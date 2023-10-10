@@ -5,11 +5,7 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   TextInput,
-  KeyboardAvoidingView,
-  Pressable,
-  ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
   TouchableOpacity,
@@ -29,7 +25,7 @@ const LoginScreen = () => {
   return (
     <TouchableWithoutFeedback
       onPress={() => {
-        Keyboard.dismiss(), setIsFocused(false);
+        Keyboard.dismiss();
       }}
     >
       <ImageBackground
@@ -49,6 +45,8 @@ const LoginScreen = () => {
                 style={!emailFocus ? styles.input : styles.inputFocus}
                 placeholder="Адреса електронної пошти"
                 type="email"
+                autoCapitalize="none"
+                keyboardType="email-address"
                 value={email}
                 onChangeText={setEmail}
                 onFocus={() => setEmailFocus(true)}
@@ -77,7 +75,18 @@ const LoginScreen = () => {
                 </TouchableOpacity>
               </View>
 
-              <TouchableOpacity style={styles.buttonLogin}>
+              <TouchableOpacity
+                style={styles.buttonLogin}
+                onPress={() => {
+                  if (!email || !password) {
+                    alert("Please entry all fields!");
+                  } else {
+                    console.debug(`Email: ${email}, password: ${password}`);
+                    setEmail("");
+                    setPassword("");
+                  }
+                }}
+              >
                 <Text style={{ color: "#ffffff" }}>Увійти</Text>
               </TouchableOpacity>
               <TouchableOpacity>

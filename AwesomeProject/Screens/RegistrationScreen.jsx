@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import BGImage from "../images/BGImage.jpg";
@@ -26,6 +27,7 @@ const RegistrationScreen = () => {
   const [loginFocus, setLoginFocus] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
+
   // const navigation = useNavigation();
   return (
     <TouchableWithoutFeedback
@@ -55,50 +57,70 @@ const RegistrationScreen = () => {
 
             <View style={styles.registerContainer}>
               <Text style={styles.register}>Реєстрація</Text>
-              <TextInput
-                style={!emailFocus ? styles.input : styles.inputFocus}
-                placeholder="Адреса електронної пошти"
-                type="email"
-                value={email}
-                onChangeText={setEmail}
-                onFocus={() => setEmailFocus(true)}
-                onBlur={() => setEmailFocus(false)}
-              />
-              <TextInput
-                style={!loginFocus ? styles.input : styles.inputFocus}
-                placeholder="Логін"
-                type="text"
-                value={login}
-                onChangeText={setLogin}
-                onFocus={() => setLoginFocus(true)}
-                onBlur={() => setLoginFocus(false)}
-              />
-              <View style={styles.passContainer}>
+              <View>
                 <TextInput
-                  style={!passwordFocus ? styles.input : styles.inputFocus}
-                  placeholder="Пароль"
-                  secureTextEntry={!showPassword}
-                  type="password"
-                  value={password}
-                  onChangeText={setPassword}
-                  onFocus={() => setPasswordFocus(true)}
-                  onBlur={() => setPasswordFocus(false)}
+                  style={!emailFocus ? styles.input : styles.inputFocus}
+                  placeholder="Адреса електронної пошти"
+                  type="email"
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  value={email}
+                  required
+                  onChangeText={setEmail}
+                  onFocus={() => setEmailFocus(true)}
+                  onBlur={() => setEmailFocus(false)}
                 />
-                <TouchableOpacity
-                  onPress={() => setShowPassword(!showPassword)}
-                >
-                  <MaterialCommunityIcons
-                    name={!showPassword ? "eye-off" : "eye"}
-                    size={24}
-                    color="#aaa"
-                    style={styles.icon}
+                <TextInput
+                  style={!loginFocus ? styles.input : styles.inputFocus}
+                  placeholder="Логін"
+                  type="text"
+                  value={login}
+                  required
+                  onChangeText={setLogin}
+                  onFocus={() => setLoginFocus(true)}
+                  onBlur={() => setLoginFocus(false)}
+                />
+                <View style={styles.passContainer}>
+                  <TextInput
+                    style={!passwordFocus ? styles.input : styles.inputFocus}
+                    placeholder="Пароль"
+                    secureTextEntry={!showPassword}
+                    type="password"
+                    value={password}
+                    required
+                    onChangeText={setPassword}
+                    onFocus={() => setPasswordFocus(true)}
+                    onBlur={() => setPasswordFocus(false)}
                   />
+                  <TouchableOpacity
+                    onPress={() => setShowPassword(!showPassword)}
+                  >
+                    <MaterialCommunityIcons
+                      name={!showPassword ? "eye-off" : "eye"}
+                      size={24}
+                      color="#aaa"
+                      style={styles.icon}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <TouchableOpacity
+                  style={styles.buttonRegister}
+                  onPress={() => {
+                    if (!login || !email || !password) {
+                      alert("Please entry all fields!");
+                    } else {
+                      console.debug(
+                        `Email: ${email}, login: ${login}, password: ${password}`
+                      );
+                      setEmail("");
+                      setLogin("");
+                      setPassword("");
+                    }
+                  }}
+                >
+                  <Text style={{ color: "#ffffff" }}>Зареєструватися</Text>
                 </TouchableOpacity>
               </View>
-
-              <TouchableOpacity style={styles.buttonRegister}>
-                <Text style={{ color: "#ffffff" }}>Зареєструватися</Text>
-              </TouchableOpacity>
               <TouchableOpacity>
                 <Text
                   style={styles.textUnderButton}
