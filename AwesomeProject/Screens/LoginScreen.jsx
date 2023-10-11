@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import {
   ImageBackground,
   View,
@@ -21,7 +21,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [emailFocus, setEmailFocus] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
-  //   const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -82,6 +82,7 @@ const LoginScreen = () => {
                     alert("Please entry all fields!");
                   } else {
                     console.debug(`Email: ${email}, password: ${password}`);
+                    navigation.navigate("Home");
                     setEmail("");
                     setPassword("");
                   }
@@ -90,12 +91,15 @@ const LoginScreen = () => {
                 <Text style={{ color: "#ffffff" }}>Увійти</Text>
               </TouchableOpacity>
               <TouchableOpacity>
-                <Text
-                  style={styles.textUnderButton}
-                  //   onPress={() => navigation.navigate("Registration")}
-                >
+                <Text style={styles.textUnderButton}>
                   Немає акаунту?
-                  <Text style={styles.textRegister}>Зареєструватися</Text>
+                  <Text
+                    style={styles.textRegister}
+                    onPress={() => navigation.navigate("Registration")}
+                  >
+                    {" "}
+                    Зареєструватися
+                  </Text>
                 </Text>
               </TouchableOpacity>
             </View>

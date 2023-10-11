@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import {
   ImageBackground,
   View,
@@ -19,7 +19,7 @@ import BGImage from "../images/BGImage.jpg";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 
-const RegistrationScreen = () => {
+const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState("");
@@ -28,7 +28,7 @@ const RegistrationScreen = () => {
   const [emailFocus, setEmailFocus] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
 
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -113,6 +113,7 @@ const RegistrationScreen = () => {
                       console.debug(
                         `Email: ${email}, login: ${login}, password: ${password}`
                       );
+                      navigation.navigate("Home");
                       setEmail("");
                       setLogin("");
                       setPassword("");
@@ -123,11 +124,14 @@ const RegistrationScreen = () => {
                 </TouchableOpacity>
               </View>
               <TouchableOpacity>
-                <Text
-                  style={styles.textUnderButton}
-                  // onPress={() => navigation.navigate("LoginScreen")}
-                >
-                  Вже є акаунт? <Text style={styles.textLogin}>Увійти</Text>
+                <Text style={styles.textUnderButton}>
+                  Вже є акаунт?{" "}
+                  <Text
+                    style={styles.textLogin}
+                    onPress={() => navigation.navigate("Login")}
+                  >
+                    Увійти
+                  </Text>
                 </Text>
               </TouchableOpacity>
             </View>
@@ -228,4 +232,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegistrationScreen;
+export default Registration;
