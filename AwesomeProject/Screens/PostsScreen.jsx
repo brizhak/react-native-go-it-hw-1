@@ -16,11 +16,11 @@ const Posts = () => {
 
 const styles = StyleSheet.create({
   mainContainer: {
+    flex: 1,
     paddingLeft: 16,
     paddingRight: 16,
     paddingTop: 32,
     backgroundColor: "#fff",
-    height: "100%",
   },
   userContainer: {
     flex: 1,
