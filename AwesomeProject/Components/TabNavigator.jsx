@@ -36,7 +36,6 @@ const TabNavigator = () => {
         name="Create"
         component={CreatePosts}
         options={{
-          headerTitle: "Створити публікацію",
           tabBarIcon: () => (
             <MaterialCommunityIcons name={"plus"} size={20} color="white" />
           ),
