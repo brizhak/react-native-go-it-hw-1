@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ImageBackground, View, Image, Text, StyleSheet } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import BGImage from "../images/BGImage.jpg";
+import { ImagesAssets } from "../posts";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 
@@ -46,117 +47,42 @@ const Profile = () => {
             </View>
           </View>
           <Text style={styles.userName}>User Name</Text>
-          <View style={styles.postContainer}>
-            <Image
-              source={require("../images/post1.png")}
-              style={styles.postPhoto}
-            />
-            <Text style={styles.photoTitle}>Ліс</Text>
-            <View style={styles.postDetails}>
-              <MaterialCommunityIcons
-                name="comment"
-                size={24}
-                color="#FF6C00"
-                onPress={() =>
-                  navigation.navigate("Comments", {
-                    imageUrl: "../images/post1.png",
-                  })
-                }
-              />
-              <Text style={{ marginRight: 24 }}>23</Text>
-              <MaterialCommunityIcons
-                name="heart-outline"
-                size={24}
-                color="#FF6C00"
-              />
-              <Text>230</Text>
-              <View style={styles.location}>
-                <Text
-                  style={{
-                    textDecorationLine: "underline",
-                    fontSize: 16,
-                    color: "#212121",
-                  }}
-                >
-                  Ukraine
-                </Text>
+          {ImagesAssets.map((image) => (
+            <View style={styles.postContainer} key={image.id}>
+              <Image source={image.bannerList} style={styles.postPhoto} />
+              <Text style={styles.photoTitle}>Ліс</Text>
+              <View style={styles.postDetails}>
+                <MaterialCommunityIcons
+                  name="comment"
+                  size={24}
+                  color="#FF6C00"
+                  onPress={() =>
+                    navigation.navigate("Comments", {
+                      imageUrl: image.bannerList,
+                    })
+                  }
+                />
+                <Text style={{ marginRight: 24 }}>0</Text>
+                <MaterialCommunityIcons
+                  name="heart-outline"
+                  size={24}
+                  color="#FF6C00"
+                />
+                <Text>{image.likes}</Text>
+                <View style={styles.location}>
+                  <Text
+                    style={{
+                      textDecorationLine: "underline",
+                      fontSize: 16,
+                      color: "#212121",
+                    }}
+                  >
+                    Ukraine
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-          <View style={styles.postContainer}>
-            <Image
-              source={require("../images/post2.png")}
-              style={styles.postPhoto}
-            />
-            <Text style={styles.photoTitle}>Захід на Чорному морі</Text>
-            <View style={styles.postDetails}>
-              <MaterialCommunityIcons
-                name="comment"
-                size={24}
-                color="#FF6C00"
-                onPress={() =>
-                  navigation.navigate("Comments", {
-                    imageUrl: "../images/post2.png",
-                  })
-                }
-              />
-              <Text style={{ marginRight: 24 }}>16</Text>
-              <MaterialCommunityIcons
-                name="heart-outline"
-                size={24}
-                color="#FF6C00"
-              />
-              <Text>180</Text>
-              <View style={styles.location}>
-                <Text
-                  style={{
-                    textDecorationLine: "underline",
-                    fontSize: 16,
-                    color: "#212121",
-                  }}
-                >
-                  Ukraine
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.postContainer}>
-            <Image
-              source={require("../images/post3.png")}
-              style={styles.postPhoto}
-            />
-            <Text style={styles.photoTitle}>Старий будиночок у Венеції</Text>
-            <View style={styles.postDetails}>
-              <MaterialCommunityIcons
-                name="comment"
-                size={24}
-                color="#FF6C00"
-                onPress={() =>
-                  navigation.navigate("Comments", {
-                    imageUrl: "../images/post3.png",
-                  })
-                }
-              />
-              <Text style={{ marginRight: 24 }}>21</Text>
-              <MaterialCommunityIcons
-                name="heart-outline"
-                size={24}
-                color="#FF6C00"
-              />
-              <Text>215</Text>
-              <View style={styles.location}>
-                <Text
-                  style={{
-                    textDecorationLine: "underline",
-                    fontSize: 16,
-                    color: "#212121",
-                  }}
-                >
-                  Italy
-                </Text>
-              </View>
-            </View>
-          </View>
+          ))}
         </View>
       </KeyboardAwareScrollView>
       <StatusBar style="auto" />

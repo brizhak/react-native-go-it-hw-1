@@ -1,1 +1,0 @@
-# react-native-go-it-hw-1
