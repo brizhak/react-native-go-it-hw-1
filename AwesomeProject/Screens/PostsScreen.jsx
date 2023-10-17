@@ -12,19 +12,6 @@ const Posts = () => {
       resetScrollToCoords={{ x: 0, y: 0 }}
       scrollEnabled={true}
     >
-      <View style={styles.header}>
-        <View style={styles.headerContainer}></View>
-        <Text style={styles.headerText}>Публікації</Text>
-        <View>
-          <MaterialCommunityIcons
-            name="export"
-            size={24}
-            color="#aaa"
-            style={styles.exitIcon}
-            onPress={() => navigation.navigate("Login")}
-          />
-        </View>
-      </View>
       <View>
         <View style={styles.userContainer}>
           <View style={styles.userPhoto}>
@@ -84,25 +71,6 @@ const Posts = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: "#fff",
-  },
-  header: {
-    height: 88,
-    borderBottomColor: "#E5E5E5",
-    borderBottomWidth: 1,
-  },
-  headerContainer: {
-    height: 44,
-    width: "100%",
-  },
-  headerText: {
-    fontSize: 17,
-    textAlign: "center",
-    marginTop: 10,
-  },
-  exitIcon: {
-    marginLeft: "auto",
-    marginRight: 10,
-    bottom: 22,
   },
   userContainer: {
     paddingLeft: 16,

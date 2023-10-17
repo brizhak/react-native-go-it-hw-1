@@ -19,19 +19,6 @@ const CreatePosts = () => {
       }}
     >
       <View style={styles.mainContainer}>
-        {/* <View style={styles.header}>
-          <View style={styles.headerContainer}></View>
-          <View>
-            <MaterialCommunityIcons
-              name="arrow-left"
-              size={24}
-              color="#aaa"
-              style={styles.goBack}
-              onPress={() => navigation.navigate("Posts")}
-            />
-          </View>
-          <Text style={styles.headerText}>Створити публікацію</Text>
-        </View> */}
         <View>
           <View style={styles.photoContainer}>
             <View style={styles.iconContainer}>
@@ -78,25 +65,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  header: {
-    height: 88,
-    borderBottomColor: "#E5E5E5",
-    borderBottomWidth: 1,
-  },
-  headerContainer: {
-    height: 44,
-    width: "100%",
-  },
-  headerText: {
-    fontSize: 17,
-    textAlign: "center",
-    bottom: 22,
-  },
-  goBack: {
-    marginRight: "auto",
-    marginLeft: 10,
-    marginTop: 10,
   },
   photoContainer: {
     height: 240,
