@@ -19,7 +19,7 @@ const CreatePosts = () => {
       }}
     >
       <View style={styles.mainContainer}>
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <View style={styles.headerContainer}></View>
           <View>
             <MaterialCommunityIcons
@@ -31,7 +31,7 @@ const CreatePosts = () => {
             />
           </View>
           <Text style={styles.headerText}>Створити публікацію</Text>
-        </View>
+        </View> */}
         <View>
           <View style={styles.photoContainer}>
             <View style={styles.iconContainer}>

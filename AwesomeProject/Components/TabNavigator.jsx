@@ -1,11 +1,13 @@
 import Posts from "../Screens/PostsScreen";
-import { Text, View, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CreatePosts from "../Screens/CreatePostsScreen";
 import Profile from "../Screens/ProfileScreen";
 
 const TabNavigator = () => {
+  const navigation = useNavigation();
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
@@ -15,7 +17,7 @@ const TabNavigator = () => {
         },
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarActiveTintColor: "#e91e63",
+        tabBarActiveBackgroundColor: "#FF6C00",
       })}
       initialRouteName="Home"
     >
@@ -39,6 +41,31 @@ const TabNavigator = () => {
           tabBarIcon: () => (
             <MaterialCommunityIcons name={"plus"} size={20} color="white" />
           ),
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ marginLeft: 16 }}
+              onPress={() => navigation.navigate("Posts")}
+            >
+              <MaterialCommunityIcons
+                name={"arrow-left"}
+                size={14}
+                color="black"
+              />
+            </TouchableOpacity>
+          ),
+          headerTitle: "Створити публікацію",
+          headerTitleStyle: {
+            fontWeight: 500,
+          },
+          headerStyle: {
+            backgroundColor: "#FFFFFF",
+            shadowColor: "rgba(0, 0, 0, 0.3)",
+            shadowOffset: {
+              width: 0,
+              height: 0.5,
+            },
+            shadowRadius: 0,
+          },
           tabBarIconStyle: {
             backgroundColor: "#FF6C00",
             borderRadius: 100,
