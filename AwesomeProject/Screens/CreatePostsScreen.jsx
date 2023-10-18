@@ -40,7 +40,7 @@ const CreatePosts = () => {
   }
 
   useEffect(() => {
-    async () => {
+    (async () => {
       let { status } = await Location.requestBackgroundPermissionsAsync();
       if (status !== "granted") {
         alert("Permission to access location was denied");
@@ -52,7 +52,7 @@ const CreatePosts = () => {
         longitude: coord.coords.longitude,
       };
       setLocation(coords);
-    };
+    })();
   }, []);
   return (
     <TouchableWithoutFeedback
