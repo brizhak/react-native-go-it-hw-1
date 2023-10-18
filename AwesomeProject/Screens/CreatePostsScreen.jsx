@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
-import MapView, { Marker } from "react-native-maps";
-import * as Location from "expo-location";
 import {
   Text,
   View,
@@ -14,6 +12,7 @@ import {
   Keyboard,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Location from "expo-location";
 
 const CreatePosts = () => {
   const navigation = useNavigation();
@@ -32,28 +31,26 @@ const CreatePosts = () => {
     })();
   }, []);
 
+  const getLocation = async () => {
+    let { status } = await Location.requestBackgroundPermissionsAsync();
+    if (status !== "granted") {
+      alert("Permission to access location was denied");
+    }
+
+    let coord = await Location.getCurrentPositionAsync({});
+    const coords = {
+      latitude: coord.coords.latitude,
+      longitude: coord.coords.longitude,
+    };
+    setLocation(coords);
+  };
+
   if (hasPermission === null) {
     return <View />;
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
-
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestBackgroundPermissionsAsync();
-      if (status !== "granted") {
-        alert("Permission to access location was denied");
-      }
-
-      let coord = await Location.getCurrentPositionAsync({});
-      const coords = {
-        latitude: coord.coords.latitude,
-        longitude: coord.coords.longitude,
-      };
-      setLocation(coords);
-    })();
-  }, []);
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -61,23 +58,6 @@ const CreatePosts = () => {
       }}
     >
       <View style={styles.mainContainer}>
-        <MapView
-          style={styles.mapStyle}
-          region={{
-            ...location,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-          showsUserLocation={true}
-        >
-          {location && (
-            <Marker
-              title="I am here"
-              coordinate={location}
-              description="Hello"
-            />
-          )}
-        </MapView>
         <View>
           <View style={styles.photoContainer}>
             <Camera style={styles.camera} type={type} ref={setCameraRef}>
@@ -138,7 +118,9 @@ const CreatePosts = () => {
                   alert("Please entry all fields!");
                 } else {
                   console.debug(photoName);
-                  navigation.navigate("Posts");
+                  getLocation();
+                  console.debug(location);
+                  navigation.navigate("MapScreen", { location });
                   setPhotoName("");
                 }
               }}
@@ -268,10 +250,6 @@ const styles = StyleSheet.create({
     width: 40,
     backgroundColor: "white",
     borderRadius: 50,
-  },
-  mapStyle: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
   },
 });
 

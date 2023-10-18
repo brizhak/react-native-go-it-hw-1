@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 const Comments = ({ route }) => {
-  const navigation = useNavigation();
   const imageUrl = route.params.imageUrl;
 
   return (
