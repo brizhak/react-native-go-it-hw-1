@@ -40,19 +40,19 @@ const CreatePosts = () => {
   }
 
   useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestPermissionsAsync();
+    async () => {
+      let { status } = await Location.requestBackgroundPermissionsAsync();
       if (status !== "granted") {
-        console.log("Permission to access location was denied");
+        alert("Permission to access location was denied");
       }
 
-      let location = await Location.getCurrentPositionAsync({});
+      let coord = await Location.getCurrentPositionAsync({});
       const coords = {
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
+        latitude: coord.coords.latitude,
+        longitude: coord.coords.longitude,
       };
       setLocation(coords);
-    })();
+    };
   }, []);
   return (
     <TouchableWithoutFeedback
